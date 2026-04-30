@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>SportEx Одесса | Спортивные товары — Бокс, MMA, Футбол, Единоборства</title>
+<meta name="description" content="Магазин спортивных товаров SportEx в Одессе. Боксёрские перчатки RDX, VENUM, EVERLAST, форма MMA, компрессионная одежда, защита. Пантелеймоновская 25, ТЦ «Новый Привоз», 3 этаж. Доставка по Украине."/>
+<meta name="keywords" content="спортивные товары Одесса, боксёрские перчатки, MMA перчатки, форма единоборств, SportEx Одесса, ТЦ Новый Привоз, RDX VENUM EVERLAST купить Одесса"/>
+<meta name="robots" content="index, follow"/>
+<link rel="canonical" href="https://sportex.od.ua/"/>
+<meta property="og:type" content="website"/>
+<meta property="og:title" content="SportEx — Спортивные товары в Одессе"/>
+<meta property="og:description" content="Боксёрские перчатки, MMA, компрессионная одежда. Одесса, Пантелеймоновская 25, ТЦ «Новый Привоз», 3 этаж."/>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org","@type":"SportingGoodsStore",
+  "name":"SportEx","url":"https://sportex.od.ua/",
+  "address":{"@type":"PostalAddress","streetAddress":"ул. Пантелеймоновская 25, ТЦ «Новый Привоз», 3 этаж","addressLocality":"Одесса","addressCountry":"UA"},
+  "openingHours":"Mo-Su 09:00-21:00","priceRange":"₴₴"
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700;900&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+
+<!-- ═══ SPLASH ═══ -->
+<div id="splash" class="hidden" style="display:none">
+  <div class="splash-logo">
+    <svg width="52" height="52" viewBox="0 0 44 44" fill="none" style="filter:drop-shadow(0 0 12px rgba(232,0,29,.7))">
+      <polygon points="22,2 42,14 42,30 22,42 2,30 2,14" fill="none" stroke="#E8001D" stroke-width="1.5"/>
+      <polygon points="22,6 38,15.5 38,28.5 22,38 6,28.5 6,15.5" fill="rgba(232,0,29,0.08)"/>
+      <path d="M14 16 L22 28 L30 16" stroke="#E8001D" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      <path d="M18 22 H26" stroke="#E8001D" stroke-width="2" stroke-linecap="round"/>
+      <circle cx="22" cy="22" r="2" fill="#E8001D"/>
+    </svg>
+    <div>
+      <div class="splash-logo-text">SportEx</div>
+      <div class="splash-logo-sub">Одесса · Sport Store</div>
+    </div>
+  </div>
+  <p class="splash-title" data-i18n="splash_title">Выберите язык</p>
+  <div class="splash-langs">
+    <button class="splash-lang-btn" data-lang="ua"><span>🇺🇦 Українська</span></button>
+    <button class="splash-lang-btn" data-lang="ru"><span>🇷🇺 Русский</span></button>
+    <button class="splash-lang-btn" data-lang="en"><span>🇬🇧 English</span></button>
+  </div>
+  <p class="splash-sub" data-i18n="splash_sub">Choose your language / Оберіть мову</p>
+</div>
+
+<!-- ═══ CATEGORY MODAL ═══ -->
+<div id="catModal" class="cat-modal hidden">
+  <div class="cat-modal-inner">
+    <button class="cat-modal-close" id="catModalClose">✕</button>
+    <div class="cat-modal-header">
+      <span class="cat-modal-icon" id="catModalIcon"></span>
+      <h2 class="cat-modal-title" id="catModalTitle"></h2>
+    </div>
+    <div class="cat-modal-sub-list" id="catModalList"></div>
+  </div>
+</div>
+
+<!-- ═══ MOBILE NAV ═══ -->
+<div class="mobile-nav" id="mobileNav">
+  <button class="close-nav" id="closeNav">✕</button>
+  <a href="#categories" data-i18n="nav_categories">Категории</a>
+  <a href="#products"   data-i18n="nav_products">Товары</a>
+  <a href="#why"        data-i18n="nav_about">О магазине</a>
+  <a href="#contact"    data-i18n="nav_contacts">Контакты</a>
+</div>
+
+<!-- ═══ HEADER ═══ -->
+<header id="header">
+  <a href="#" class="logo">
+    <div class="logo-icon"><img src="data:image/png;base64,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" alt="SPX" class="logo-img-real"/></div>
+    <div class="logo-text">
+      <span class="logo-main">SportEx</span>
+      <span class="logo-sub">Одесса · Спорт товары</span>
+    </div>
+  </a>
+  <nav>
+    <a href="#categories" data-i18n="nav_categories">Категории</a>
+    <a href="#products"   data-i18n="nav_products">Товары</a>
+    <a href="#why"        data-i18n="nav_about">О магазине</a>
+    <a href="#brands"     data-i18n="nav_brands">Бренды</a>
+    <a href="#contact"    data-i18n="nav_contacts">Контакты</a>
+  </nav>
+  <div class="header-right">
+    <div class="lang-switch">
+      <button class="lang-switch-btn" data-lang="ua">UA</button>
+      <button class="lang-switch-btn" data-lang="ru">RU</button>
+      <button class="lang-switch-btn" data-lang="en">EN</button>
+    </div>
+    <button class="burger" id="burgerBtn"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<!-- ═══ HERO ═══ -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-diagonal"></div>
+  <div class="hero-content">
+    <div class="hero-badge"><span data-i18n="hero_badge">Работаем в Одессе</span></div>
+    <h1 class="hero-h1">
+      <span style="-webkit-text-stroke:0;color:var(--white);filter:none;opacity:1" data-i18n="hero_line1">ТВОЙ</span>
+      <span data-i18n="hero_line2">SPORTEX</span>
+      <span style="-webkit-text-stroke:0;color:var(--white);filter:none;opacity:1" data-i18n="hero_line3">УРОВЕНЬ</span>
+    </h1>
+    <p class="hero-sub" data-i18n="hero_sub">Профессиональное снаряжение для бокса, MMA, единоборств, футбола и активного спорта.</p>
+    <div class="hero-actions">
+      <a href="#categories" class="btn-primary" data-i18n="hero_btn_catalog">Смотреть каталог →</a>
+      <a href="#contact"    class="btn-outline"  data-i18n="hero_btn_map">Как нас найти</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-num">1<span>086</span></div><div class="stat-label" data-i18n="stat_products">Товаров</div></div>
+    <div class="stat"><div class="stat-num"><span>20</span>+</div><div class="stat-label" data-i18n="stat_brands">Брендов</div></div>
+    <div class="stat"><div class="stat-num"><span>96</span>%</div><div class="stat-label" data-i18n="stat_reviews">Позитивних відгуків</div></div>
+  </div>
+  <div class="hero-scroll"><div class="scroll-line"></div><div class="scroll-dot"></div><span>Scroll</span></div>
+</section>
+
+<!-- ═══ TICKER ═══ -->
+<div class="ticker">
+  <div class="ticker-inner">
+    <span class="ticker-item"><span class="ticker-dot"></span>СПОРТИВНАЯ ОДЕЖДА</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>ФИТНЕС</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>ФУТБОЛ</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>ЕДИНОБОРСТВА</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>ПЛАВАНИЕ</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>СПОРТИВНАЯ ОДЕЖДА</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>ФИТНЕС</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>ФУТБОЛ</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>ЕДИНОБОРСТВА</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>ПЛАВАНИЕ</span>
+  </div>
+</div>
+
+<!-- ═══ CATEGORIES ═══ -->
+<section id="categories">
+  <div class="section-label" data-i18n="section_label_assortment">Ассортимент</div>
+  <h2 class="section-title reveal" data-i18n="section_title_categories">ВСЕ КАТЕГОРИИ</h2>
+  <p class="section-desc reveal reveal-delay-1" data-i18n="section_desc_categories">Нажми на категорию — увидишь все подкатегории и товары.</p>
+
+  <!-- CATEGORIES GRID — filled by JS from CATEGORIES data -->
+  <div class="categories-grid" id="categoriesGrid"></div>
+</section>
+
+<!-- ═══ PRODUCTS ═══ -->
+<section id="products">
+  <div class="products-header reveal">
+    <div>
+      <div class="section-label" data-i18n="section_label_instock">В наличии</div>
+      <h2 class="section-title" data-i18n="section_title_products">ПОПУЛЯРНЫЕ ТОВАРЫ</h2>
+    </div>
+    <button class="view-all" onclick="document.getElementById('categories').scrollIntoView({behavior:'smooth'})" data-i18n="btn_view_all">Весь каталог →</button>
+  </div>
+  <div class="products-grid" id="productsGrid"></div>
+</section>
+
+<!-- ═══ WHY ═══ -->
+<section id="why">
+  <div class="section-label" data-i18n="section_label_why">Почему мы</div>
+  <h2 class="section-title reveal" data-i18n="section_title_why">SPORTEX — ВАШ ВЫБОР</h2>
+  <div class="why-grid">
+    <div class="why-card reveal reveal-delay-1">
+      <div class="why-num">01</div><span class="why-icon">🏆</span>
+      <div class="why-title" data-i18n="why1_title">Только проверенные бренды</div>
+      <p class="why-text" data-i18n="why1_text">RDX, VENUM, EVERLAST, TWINS, GREEN HILL, BAD BOY. Никаких подделок.</p>
+    </div>
+    <div class="why-card reveal reveal-delay-2">
+      <div class="why-num">02</div><span class="why-icon">📦</span>
+      <div class="why-title" data-i18n="why2_title">Доставка по всей Украине</div>
+      <p class="why-text" data-i18n="why2_text">Новой Почтой и Укрпочтой. Быстро, с трекингом. Самовывоз в Одессе.</p>
+    </div>
+    <div class="why-card reveal reveal-delay-3">
+      <div class="why-num">03</div><span class="why-icon">⭐</span>
+      <div class="why-title" data-i18n="why3_title">96% положительных отзывов</div>
+      <p class="why-text" data-i18n="why3_text">Более 870 продаж с рейтингом 96%. Клиенты возвращаются снова.</p>
+    </div>
+    <div class="why-card reveal reveal-delay-4">
+      <div class="why-num">04</div><span class="why-icon">💬</span>
+      <div class="why-title" data-i18n="why4_title">Экспертная консультация</div>
+      <p class="why-text" data-i18n="why4_text">Поможем подобрать экипировку под вид спорта, уровень и бюджет.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ BRANDS ═══ -->
+<div id="brands">
+  <p class="brands-title">Официальные бренды в ассортименте</p>
+  <div class="brands-track">
+    <div class="brands-inner">
+      <span class="brand-name">RDX</span><span class="brand-name">VENUM</span>
+      <span class="brand-name">EVERLAST</span><span class="brand-name">TWINS</span>
+      <span class="brand-name">GREEN HILL</span><span class="brand-name">BAD BOY</span>
+      <span class="brand-name">UFC</span><span class="brand-name">ROOMAIF</span>
+      <span class="brand-name">DONIC</span><span class="brand-name">ZELART</span>
+      <span class="brand-name">JOMA</span><span class="brand-name">ASICS</span>
+      <span class="brand-name">NIKE</span><span class="brand-name">JORDAN</span>
+      <span class="brand-name">RDX</span><span class="brand-name">VENUM</span>
+      <span class="brand-name">EVERLAST</span><span class="brand-name">TWINS</span>
+      <span class="brand-name">GREEN HILL</span><span class="brand-name">BAD BOY</span>
+      <span class="brand-name">UFC</span><span class="brand-name">ROOMAIF</span>
+      <span class="brand-name">DONIC</span><span class="brand-name">ZELART</span>
+      <span class="brand-name">JOMA</span><span class="brand-name">ASICS</span>
+      <span class="brand-name">NIKE</span><span class="brand-name">JORDAN</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ CTA ═══ -->
+<section id="cta">
+  <div class="cta-label" data-i18n="cta_label">Магазин в Одессе</div>
+  <h2 class="cta-title" data-i18n="cta_title">ПРИХОДИ — ВЫБИРАЙ ЛИЧНО</h2>
+  <p class="cta-sub" data-i18n="cta_sub">Пантелеймоновская 25, ТЦ «Новый Привоз», 3 этаж · Одесса</p>
+  <div class="cta-actions">
+    <a href="#contact"  class="btn-white" data-i18n="cta_btn_map">Как добраться →</a>
+    <a href="#products" class="btn-trans" data-i18n="cta_btn_catalog">Весь каталог</a>
+  </div>
+</section>
+
+<!-- ═══ CONTACT ═══ -->
+<section id="contact">
+  <div class="section-label" data-i18n="section_label_contacts">Найти нас</div>
+  <h2 class="section-title reveal" data-i18n="section_title_contacts">КОНТАКТЫ &amp; АДРЕС</h2>
+  <div class="contact-grid">
+    <div class="contact-info">
+      <div class="contact-item reveal reveal-delay-1">
+        <div class="contact-icon">📍</div>
+        <div>
+          <div class="contact-label" data-i18n="contact_address_label">Адрес</div>
+          <div class="contact-value" data-i18n="contact_address_val" data-i18n-html>г. Одесса, ул. Пантелеймоновская 25<br>ТЦ «Новый Привоз», 3 этаж</div>
+        </div>
+      </div>
+      <div class="contact-item reveal reveal-delay-2">
+        <div class="contact-icon">🕐</div>
+        <div>
+          <div class="contact-label" data-i18n="contact_hours_label">Режим работы</div>
+          <div class="contact-value" data-i18n="contact_hours_val" data-i18n-html>Пн–Вс: 09:00 – 21:00<br>Без выходных</div>
+        </div>
+      </div>
+      <div class="contact-item reveal reveal-delay-3">
+        <div class="contact-icon">🚚</div>
+        <div>
+          <div class="contact-label" data-i18n="contact_delivery_label">Доставка</div>
+          <div class="contact-value" data-i18n="contact_delivery_val" data-i18n-html>Нова Пошта · Укрпошта<br>По всей Украине · Самовывоз</div>
+        </div>
+      </div>
+      <div class="contact-item reveal reveal-delay-4">
+        <div class="contact-icon">📞</div>
+        <div>
+          <div class="contact-label">Телефон</div>
+          <div class="contact-value">
+            <a href="tel:+380505805032" class="phone-link">+380 50 580 50 32</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="map-wrap reveal reveal-delay-2">
+      <div class="map-placeholder">
+        <span class="map-pin">📍</span>
+        <div class="map-text">Одесса<br>ул. Пантелеймоновская 25<br>ТЦ «Новый Привоз», 3 этаж</div>
+        <a href="https://maps.google.com/?q=Одесса+Пантелеймоновская+25" target="_blank" class="map-link" data-i18n="map_open">Открыть в Google Maps →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-logo">
+        <a href="#" class="logo">
+          <div class="logo-icon"><img src="data:image/png;base64,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" alt="SPX" class="logo-img-real"/></div>
+          <div class="logo-text">
+            <span class="logo-main" style="font-size:20px">SportEx</span>
+            <span class="logo-sub">Одесса</span>
+          </div>
+        </a>
+      </div>
+      <p class="footer-desc" data-i18n="footer_desc">Профессиональное снаряжение. Работаем в Одессе, доставляем по всей Украине.</p>
+      <div class="social-links">
+        <a href="#" class="social-link">IG</a>
+        <a href="#" class="social-link">FB</a>
+        <a href="#" class="social-link">TG</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title" data-i18n="footer_catalog">Каталог</div>
+      <div class="footer-links" id="footerCatLinks"><!-- filled by JS --></div>
+    </div>
+    <div>
+      <div class="footer-col-title" data-i18n="footer_brands">Бренды</div>
+      <div class="footer-links">
+        <span class="footer-link">RDX</span><span class="footer-link">VENUM</span>
+        <span class="footer-link">EVERLAST</span><span class="footer-link">TWINS</span>
+        <span class="footer-link">GREEN HILL</span><span class="footer-link">BAD BOY</span>
+        <span class="footer-link">UFC</span><span class="footer-link">ROOMAIF</span>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title" data-i18n="footer_info">Информация</div>
+      <div class="footer-links">
+        <a href="#why"     class="footer-link" data-i18n="footer_about">О магазине</a>
+        <a href="#contact" class="footer-link" data-i18n="footer_contacts">Адрес и контакты</a>
+        <a href="#"        class="footer-link" data-i18n="footer_delivery">Доставка и оплата</a>
+        <a href="#"        class="footer-link" data-i18n="footer_guarantee">Гарантия и возврат</a>
+        <a href="#"        class="footer-link" data-i18n="footer_wholesale">Оптовые заказы</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy" data-i18n="footer_copy">© 2026 <span>SportEx</span> · Одесса · Все права защищены</p>
+    <button class="admin-secret-btn" id="adminSecretBtn" title="Управление">⚙</button>
+  </div>
+</footer>
+
+
+<!-- ═══ ADMIN LOGIN MODAL ═══ -->
+<div id="adminLoginOverlay" class="adm-overlay hidden">
+  <div class="adm-login-box">
+    <button class="adm-close-btn" id="adminLoginClose">✕</button>
+    <div class="adm-login-logo">
+      <img src="data:image/png;base64,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" alt="SPX" style="width:32px;height:32px;object-fit:contain"/>
+      <div>
+        <div class="adm-login-title">SportEx Admin</div>
+        <div class="adm-login-sub">Панель управления</div>
+      </div>
+    </div>
+    <div class="adm-field">
+      <label>Пароль</label>
+      <input type="password" id="adminPassInput" placeholder="Введите пароль" autocomplete="current-password"/>
+      <div class="adm-field-err" id="adminPassErr"></div>
+    </div>
+    <button class="adm-login-btn" id="adminLoginBtn" onclick="window.submitAdminLogin()">Войти в панель →</button>
+  </div>
+</div>
+
+<!-- ═══ ADMIN PANEL OVERLAY ═══ -->
+<div id="adminPanel" class="adm-panel-overlay hidden">
+  <div class="adm-panel">
+
+    <!-- Sidebar -->
+    <div class="adm-sidebar">
+      <div class="adm-sidebar-logo">
+        <div class="adm-sidebar-name">SportEx</div>
+        <div class="adm-sidebar-sub">CMS Panel</div>
+      </div>
+      <div class="adm-menu">
+        <div class="adm-menu-item active" data-section="products">
+          <span>📦</span> Товары
+          <span class="adm-badge" id="admProdBadge">0</span>
+        </div>
+        <div class="adm-menu-item" data-section="categories">
+          <span>🗂️</span> Категории
+        </div>
+        <div class="adm-menu-item" data-section="orders">
+          <span>🛒</span> Заказы
+          <span class="adm-badge adm-badge-green" id="admOrderBadge">0</span>
+        </div>
+        <div class="adm-menu-item" data-section="settings">
+          <span>⚙️</span> Настройки
+        </div>
+      </div>
+      <div class="adm-sidebar-bottom">
+        <button class="adm-site-btn" onclick="window.open('index.html','_self')">🌐 На сайт</button>
+        <button class="adm-logout-btn" id="adminLogoutBtn">🚪 Выйти</button>
+      </div>
+    </div>
+
+    <!-- Content -->
+    <div class="adm-content">
+
+      <!-- ── TOPBAR ── -->
+      <div class="adm-topbar">
+        <div class="adm-topbar-title" id="admTopbarTitle">📦 Товары</div>
+        <div style="display:flex;gap:10px;align-items:center">
+          <button class="adm-btn adm-btn-outline" onclick="exportProductsJSON()" title="Скачать products.json для загрузки на хостинг">📥 Скачать products.json</button>
+          <button class="adm-btn adm-btn-red" onclick="openAdmProductModal(null)">+ Добавить товар</button>
+        </div>
+      </div>
+
+      <!-- ── PRODUCTS SECTION ── -->
+      <div class="adm-section active" id="adm-section-products">
+        <div class="adm-hint">
+          💡 После изменений нажми <strong>«Скачать products.json»</strong> и загрузи файл на хостинг — тогда все посетители увидят обновлённые товары.
+        </div>
+        <div class="adm-toolbar">
+          <input type="text" class="adm-search" id="admSearch" placeholder="🔍  Поиск по названию, бренду или артикулу (SKU)..." oninput="admFilterProducts()"/>
+          <select class="adm-select" id="admCatFilter" onchange="admFilterProducts()">
+            <option value="">Все категории</option>
+            <option value="boxing">Единоборства / Бокс</option>
+            <option value="mma">MMA</option>
+            <option value="protection">Защита</option>
+            <option value="compression">Компрессия</option>
+            <option value="football">Футбол</option>
+            <option value="basketball">Баскетбол</option>
+            <option value="volleyball">Волейбол</option>
+            <option value="swimming">Плавание</option>
+            <option value="fitness">Фитнес / Йога</option>
+            <option value="sport">Спорт товары</option>
+            <option value="karate">Каратэ</option>
+            <option value="taekwondo">Тхэквондо</option>
+            <option value="winter">Зимний спорт</option>
+            <option value="tourism">Туризм и отдых</option>
+            <option value="clothing">Спортивная одежда</option>
+          </select>
+        </div>
+        <div class="adm-table-wrap">
+          <table class="adm-table">
+            <thead>
+              <tr>
+                <th>Фото</th><th>Название</th><th>Цена</th>
+                <th>Категория</th><th>Бейдж</th><th>Бренд</th><th>Действия</th>
+              </tr>
+            </thead>
+            <tbody id="admProductsTbody"></tbody>
+          </table>
+        </div>
+        <div class="adm-pagination">
+          <span class="adm-pag-info" id="admPagInfo"></span>
+          <div class="adm-pag-btns" id="admPagBtns"></div>
+        </div>
+      </div>
+
+      <!-- ── CATEGORIES SECTION ── -->
+      <div class="adm-section" id="adm-section-categories">
+        <div style="margin-bottom:20px">
+          <div style="font-size:12px;color:#555;letter-spacing:2px;text-transform:uppercase;margin-bottom:8px">
+            Выбери категорию и редактируй её подкатегории
+          </div>
+          <!-- Category tabs -->
+          <div class="adm-cat-tabs" id="admCatTabs"></div>
+        </div>
+        <!-- Subcategory editor for selected category -->
+        <div id="admSubcatEditor" style="display:none">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:10px">
+            <div style="display:flex;align-items:center;gap:10px">
+              <span id="admActiveCatIcon" style="font-size:28px"></span>
+              <div>
+                <div id="admActiveCatName" style="font-family:Bebas Neue,sans-serif;font-size:22px;letter-spacing:2px;color:#fff"></div>
+                <div style="font-size:11px;color:#555;letter-spacing:2px;text-transform:uppercase">Подкатегории</div>
+              </div>
+            </div>
+            <button class="adm-btn adm-btn-red" onclick="admSubcatAddRow()">+ Добавить подкатегорию</button>
+          </div>
+
+          <div id="admSubcatList" style="display:flex;flex-direction:column;gap:6px">
+            <!-- rows -->
+          </div>
+
+          <div style="margin-top:20px;display:flex;gap:10px">
+            <button class="adm-btn adm-btn-red" onclick="admSaveSubcats()">💾 Сохранить изменения</button>
+            <div style="font-size:12px;color:#444;align-self:center">Изменения применятся на сайте сразу</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── ORDERS SECTION ── -->
+      <div class="adm-section" id="adm-section-orders">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:10px">
+          <span style="font-size:12px;color:#666;letter-spacing:2px;text-transform:uppercase">Все входящие заказы с сайта</span>
+          <div style="display:flex;gap:8px">
+            <button class="adm-btn adm-btn-outline" onclick="admExportOrders()">📥 Экспорт CSV</button>
+            <button class="adm-btn adm-btn-danger" onclick="admClearOrders()">🗑 Очистить</button>
+          </div>
+        </div>
+        <div class="adm-table-wrap" id="admOrdersWrap">
+          <div class="adm-empty">📭 Заказов пока нет</div>
+        </div>
+      </div>
+
+      <!-- ── SETTINGS SECTION ── -->
+      <div class="adm-section" id="adm-section-settings">
+        <div class="adm-settings-grid">
+          <div class="adm-settings-card">
+            <div class="adm-settings-title">🏪 Информация о магазине</div>
+            <div class="adm-field"><label>Название</label><input id="s-name" value="SportEx"/></div>
+            <div class="adm-field"><label>Адрес</label><input id="s-address" value="ул. Пантелеймоновская 25, ТЦ «Новый Привоз», 3 этаж"/></div>
+            <div class="adm-field"><label>Телефон</label><input id="s-phone" placeholder="+380 XX XXX XX XX"/></div>
+            <div class="adm-field"><label>Режим работы</label><input id="s-hours" value="Пн–Вс: 09:00 – 21:00"/></div>
+            <button class="adm-btn adm-btn-red" onclick="admSaveSettings()">💾 Сохранить</button>
+          </div>
+          <div class="adm-settings-card">
+            <div class="adm-settings-title">🤖 Telegram бот</div>
+            <div class="adm-field"><label>Bot Token</label><input id="s-tgtoken" type="password" placeholder="Токен бота"/></div>
+            <div class="adm-field"><label>Chat ID (твой личный)</label><input id="s-tgchat" placeholder="Узнать через @userinfobot"/></div>
+            <div style="font-size:11px;color:#555;margin:8px 0 16px">Найди свой ID: напиши боту @userinfobot в Telegram</div>
+            <button class="adm-btn adm-btn-red" onclick="admSaveTG()">💾 Сохранить</button>
+          </div>
+          <div class="adm-settings-card">
+            <div class="adm-settings-title">🔐 Смена пароля</div>
+            <div class="adm-field"><label>Текущий пароль</label><input type="password" id="s-oldpass"/></div>
+            <div class="adm-field"><label>Новый пароль</label><input type="password" id="s-newpass"/></div>
+            <div class="adm-field"><label>Повторить</label><input type="password" id="s-newpass2"/></div>
+            <button class="adm-btn adm-btn-red" onclick="admChangePass()">🔒 Сменить</button>
+          </div>
+          <div class="adm-settings-card">
+            <div class="adm-settings-title">📤 Публикация товаров</div>
+            <div style="font-size:13px;color:#aaa;line-height:1.7;margin-bottom:16px">
+              После добавления/редактирования товаров нажми кнопку ниже — скачается файл <strong>products.json</strong>. Загрузи его на хостинг в папку сайта — все посетители увидят актуальные товары.
+            </div>
+            <button class="adm-btn adm-btn-red" onclick="exportProductsJSON()" style="width:100%">📥 Скачать products.json</button>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /adm-content -->
+  </div><!-- /adm-panel -->
+</div>
+
+<!-- ═══ PRODUCT EDITOR MODAL ═══ -->
+<div id="admProductModal" class="adm-editor-overlay hidden">
+  <div class="adm-editor-box">
+    <div class="adm-editor-head">
+      <h3 id="admModalTitle">Добавить товар</h3>
+      <button onclick="closeAdmProductModal()" style="background:none;border:none;color:#666;font-size:20px;cursor:pointer">✕</button>
+    </div>
+    <div class="adm-editor-body">
+      <input type="hidden" id="adm-p-id"/>
+      <div class="adm-form-grid">
+        <div class="adm-field adm-span2"><label>Название (RU) *</label><input id="adm-p-name" placeholder="Боксёрские перчатки RDX"/></div>
+        <div class="adm-field"><label>Название (UA)</label><input id="adm-p-name-ua" placeholder="Боксерські рукавиці RDX"/></div>
+        <div class="adm-field"><label>Название (EN)</label><input id="adm-p-name-en" placeholder="RDX Boxing Gloves"/></div>
+        <div class="adm-field"><label>Цена (₴) *</label><input type="number" id="adm-p-price" placeholder="1500" min="0"/></div>
+        <div class="adm-field"><label>Бренд</label><input id="adm-p-brand" placeholder="RDX, VENUM..."/></div>
+        <div class="adm-field"><label>Категория</label>
+          <select id="adm-p-category">
+            <option value="boxing">Единоборства / Бокс</option><option value="mma">MMA</option>
+            <option value="protection">Защита</option><option value="compression">Компрессия</option>
+            <option value="football">Футбол</option><option value="basketball">Баскетбол</option>
+            <option value="volleyball">Волейбол</option><option value="swimming">Плавание</option>
+            <option value="fitness">Фитнес / Йога</option><option value="sport">Спорт товары</option>
+            <option value="karate">Каратэ</option><option value="taekwondo">Тхэквондо</option>
+            <option value="winter">Зимний спорт</option><option value="tourism">Туризм и отдых</option>
+            <option value="clothing">Спортивная одежда</option>
+          </select>
+        </div>
+        <div class="adm-field"><label>Бейдж</label>
+          <select id="adm-p-badge">
+            <option value="">Без бейджа</option>
+            <option value="new">🆕 Новинка</option>
+            <option value="hit">🔥 Хит продаж</option>
+          </select>
+        </div>
+        <div class="adm-field"><label>Артикул (SKU)</label><input id="adm-p-sku" placeholder="RDX-001"/></div>
+        <div class="adm-field adm-span2">
+          <label>Доступные размеры <span style="color:#555;font-weight:300;font-size:10px">— выбираются автоматически по категории, можно изменить</span></label>
+          <div class="adm-size-type-row" id="admSizeTypeRow">
+            <!-- filled by JS based on category -->
+          </div>
+          <div class="adm-size-checkboxes" id="admSizeCheckboxes">
+            <!-- filled by JS -->
+          </div>
+          <div id="admStockInputs" style="margin-top:12px"></div>
+          <input type="hidden" id="adm-p-sizes" value=""/>
+        </div>
+        <div class="adm-field adm-span2">
+          <label>Фотография товара</label>
+          <!-- Upload tabs -->
+          <div style="display:flex;gap:0;margin-bottom:10px;border:1px solid #1a1a1a">
+            <button type="button" id="imgTabUpload" class="adm-img-tab active"
+              onclick="admSwitchImgTab('upload')">📁 С компьютера</button>
+            <button type="button" id="imgTabUrl" class="adm-img-tab"
+              onclick="admSwitchImgTab('url')">🔗 По ссылке</button>
+          </div>
+          <!-- Upload from PC -->
+          <div id="imgUploadArea" class="adm-upload-area" onclick="document.getElementById('admFileInput').click()">
+            <input type="file" id="admFileInput" accept="image/*" style="display:none" onchange="admHandleFileUpload(this)"/>
+            <div class="adm-upload-placeholder" id="admUploadPlaceholder">
+              <span style="font-size:28px">📷</span>
+              <span style="font-size:13px;color:#555;margin-top:6px">Нажми чтобы выбрать фото</span>
+              <span style="font-size:11px;color:#333">JPG, PNG, WEBP до 5MB</span>
+            </div>
+          </div>
+          <!-- URL input -->
+          <div id="imgUrlArea" style="display:none">
+            <input id="adm-p-image-url" placeholder="https://images.prom.ua/...jpg"
+              oninput="admUpdateImgPreview()"
+              style="background:#060606;border:1px solid #1e1e1e;color:#fff;padding:10px 12px;font-size:13px;outline:none;width:100%;transition:border-color .2s"/>
+            <div style="font-size:11px;color:#333;margin-top:4px">Вставь прямую ссылку на фото</div>
+          </div>
+          <!-- Hidden actual value -->
+          <input type="hidden" id="adm-p-image" value=""/>
+        </div>
+        <div class="adm-field adm-span2">
+          <label>Описание товара <span style="color:#555;font-size:10px">— отображается клиентам на странице товара</span></label>
+          <textarea id="adm-p-desc" rows="4" placeholder="Опишите товар: материал, особенности, для кого подходит..."></textarea>
+        </div>
+        <div class="adm-field adm-span2" id="admImgPreviewWrap" style="display:none">
+          <label>Предпросмотр</label>
+          <img id="admImgPreview" style="max-height:150px;object-fit:contain;background:#0a0a0a;padding:8px;border:1px solid #1a1a1a"/>
+        </div>
+      </div>
+    </div>
+    <div class="adm-editor-footer">
+      <button class="adm-btn adm-btn-danger" id="admDeleteBtn" onclick="admDeleteProduct()" style="margin-right:auto;display:none">🗑 Удалить</button>
+      <button class="adm-btn adm-btn-outline" onclick="closeAdmProductModal()">Отмена</button>
+      <button class="adm-btn adm-btn-red" onclick="admSaveProduct()">💾 Сохранить товар</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ TOAST NOTIFICATION ═══ -->
+<div id="admToast" class="adm-toast"></div>
+
+
+<!-- ═══ FIREBASE SDK ═══ -->
+<script type="module">
+  import { initializeApp }   from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
+  import { getFirestore, collection, doc, getDocs,
+           setDoc, deleteDoc, addDoc, onSnapshot,
+           query, orderBy, serverTimestamp }
+           from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
+
+  /* ══════════════════════════════════════════
+     ВОТ СЮДА ВСТАВЬ СВОЙ firebaseConfig
+     Firebase Console → Project Settings → Your apps → SDK setup
+     ══════════════════════════════════════════ */
+  const FIREBASE_CONFIG = {
+    apiKey:            "AIzaSyCFk4IgQ1KPN-1eldYzBtHzKlIYcNkRp2M",
+    authDomain:        "sportex-c0f63.firebaseapp.com",
+    projectId:         "sportex-c0f63",
+    storageBucket:     "sportex-c0f63.firebasestorage.app",
+    messagingSenderId: "29924742392",
+    appId:             "1:29924742392:web:3a622020fe36731957170d",
+  };
+  /* ══════════════════════════════════════════ */
+
+  const CONFIGURED = FIREBASE_CONFIG.apiKey && FIREBASE_CONFIG.apiKey !== 'ВСТАВЬ_СЮДА' && FIREBASE_CONFIG.projectId && FIREBASE_CONFIG.projectId !== 'ВСТАВЬ_СЮДА';
+
+  if (!CONFIGURED) {
+    console.warn('⚠️ Firebase не настроен. Работаем в режиме localStorage.');
+    window.__fbReady = false;
+  } else {
+    const app = initializeApp(FIREBASE_CONFIG);
+    const db  = getFirestore(app);
+
+    /* ─── Products ─── */
+    window.FB = {
+      db,
+
+      /* Загрузить все товары */
+      async getProducts() {
+        const snap = await getDocs(collection(db, 'products'));
+        const arr  = [];
+        snap.forEach(d => arr.push({ ...d.data(), _fbId: d.id }));
+        arr.sort((a,b) => (a.order||0)-(b.order||0) || a.id - b.id);
+        return arr;
+      },
+
+      /* Сохранить / обновить товар */
+      async saveProduct(p) {
+        const ref = doc(db, 'products', String(p.id));
+        await setDoc(ref, { ...p, updatedAt: serverTimestamp() }, { merge: true });
+      },
+
+      /* Удалить товар */
+      async deleteProduct(id) {
+        await deleteDoc(doc(db, 'products', String(id)));
+      },
+
+      /* Первоначальная загрузка товаров из products.json в Firestore (ОДИН РАЗ) */
+      async seedProducts(products) {
+        const promises = products.map((p, i) =>
+          setDoc(doc(db, 'products', String(p.id)),
+            { ...p, order: i, updatedAt: serverTimestamp() }, { merge: true })
+        );
+        await Promise.all(promises);
+      },
+
+      /* Подписка на изменения товаров в реальном времени */
+      watchProducts(callback) {
+        return onSnapshot(collection(db, 'products'), snap => {
+          const arr = [];
+          snap.forEach(d => arr.push({ ...d.data(), _fbId: d.id }));
+          arr.sort((a,b) => (a.order||0)-(b.order||0) || a.id - b.id);
+          callback(arr);
+        });
+      },
+
+      /* Сохранить заказ */
+      async saveOrder(order) {
+        await addDoc(collection(db, 'orders'), {
+          ...order, createdAt: serverTimestamp()
+        });
+      },
+
+      /* Загрузить заказы */
+      async getOrders() {
+        try {
+          const q    = query(collection(db, 'orders'), orderBy('createdAt', 'desc'));
+          const snap = await getDocs(q);
+          const arr  = [];
+          snap.forEach(d => arr.push({ ...d.data(), _fbId: d.id }));
+          return arr;
+        } catch(e) { return []; }
+      },
+
+      /* Подписка на заказы */
+      watchOrders(callback) {
+        try {
+          const q = query(collection(db, 'orders'), orderBy('createdAt', 'desc'));
+          return onSnapshot(q, snap => {
+            const arr = [];
+            snap.forEach(d => arr.push({ ...d.data(), _fbId: d.id }));
+            callback(arr);
+          });
+        } catch(e) { return ()=>{}; }
+      },
+
+      /* Удалить заказ */
+      async deleteOrder(fbId) {
+        await deleteDoc(doc(db, 'orders', fbId));
+      },
+    };
+
+    window.__fbReady = true;
+    console.log('✅ Firebase підключений');
+
+    /* Подписка на изменения товаров в реальном времени.
+       Используем window.__fbOnProducts чтобы script.js
+       мог подписаться после своей загрузки */
+    window.FB.watchProducts(products => {
+      // Сохраняем последние данные всегда
+      window.__fbLastProducts = products;
+
+      // Обновляем сайт если State уже готов
+      if (typeof State !== 'undefined' && State) {
+        State.products = products;
+        if (typeof renderProducts === 'function') renderProducts();
+        if (typeof renderCategories === 'function') renderCategories();
+      }
+
+      // Обновляем Admin панель если открыта
+      if (typeof window.__admRefresh === 'function') window.__admRefresh(products);
+
+      // Вызываем колбек если script.js уже подписался
+      if (typeof window.__fbOnProducts === 'function') window.__fbOnProducts(products);
+    });
+  }
+</script>
+
+
+
+<!-- ═══ CATEGORY EDITOR MODAL ═══ -->
+<div id="admCatModal" class="adm-editor-overlay hidden">
+  <div class="adm-editor-box" style="max-width:580px">
+    <div class="adm-editor-head">
+      <h3 id="admCatModalTitle">Добавить категорию</h3>
+      <button onclick="closeAdmCatModal()" style="background:none;border:none;color:#666;font-size:20px;cursor:pointer">✕</button>
+    </div>
+    <div class="adm-editor-body">
+      <input type="hidden" id="adm-cat-id"/>
+      <div class="adm-form-grid">
+        <div class="adm-field">
+          <label>Иконка (эмодзи) *</label>
+          <input id="adm-cat-icon" placeholder="⚽" maxlength="4" style="font-size:22px;text-align:center"/>
+        </div>
+        <div class="adm-field">
+          <label>ID категории * <span style="color:#444;font-size:10px">(латиница, без пробелов)</span></label>
+          <input id="adm-cat-slug" placeholder="football" oninput="this.value=this.value.toLowerCase().replace(/[^a-z0-9_]/g,'')"/>
+        </div>
+        <div class="adm-field adm-span2">
+          <label>Название (RU) *</label>
+          <input id="adm-cat-name" placeholder="Футбол"/>
+        </div>
+        <div class="adm-field">
+          <label>Название (UA)</label>
+          <input id="adm-cat-name-ua" placeholder="Футбол"/>
+        </div>
+        <div class="adm-field">
+          <label>Название (EN)</label>
+          <input id="adm-cat-name-en" placeholder="Football"/>
+        </div>
+      </div>
+
+      <!-- Subcategories -->
+      <div style="margin-top:24px;padding-top:20px;border-top:1px solid #1a1a1a">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+          <span style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#555">Подкатегории</span>
+          <button class="adm-btn adm-btn-outline" style="font-size:11px;padding:5px 12px" onclick="admAddSubcatRow()">+ Добавить</button>
+        </div>
+        <div id="admSubcatRows" style="display:flex;flex-direction:column;gap:8px">
+          <!-- rows filled by JS -->
+        </div>
+      </div>
+    </div>
+    <div class="adm-editor-footer">
+      <button class="adm-btn adm-btn-danger" id="admCatDeleteBtn" onclick="admDeleteCat()" style="margin-right:auto;display:none">🗑 Удалить</button>
+      <button class="adm-btn adm-btn-outline" onclick="closeAdmCatModal()">Отмена</button>
+      <button class="adm-btn adm-btn-red" onclick="admSaveCat()">💾 Сохранить</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ CATEGORY PAGE OVERLAY ═══ -->
+<div id="catPageOverlay" class="cat-page-overlay hidden">
+  <div class="cat-page-inner">
+    <button class="cat-page-back" id="catPageBackBtn">← Все категории</button>
+    <div class="cat-page-header">
+      <div class="cat-page-title-wrap">
+        <span class="cat-page-icon" id="catPageIcon"></span>
+        <h1 class="cat-page-title" id="catPageTitle"></h1>
+        <div class="cat-page-count" id="catPageCount"></div>
+      </div>
+    </div>
+    <!-- Subcategory filter pills -->
+    <div class="cat-page-filters" id="catPageFilters"></div>
+    <!-- Products grid -->
+    <div class="products-grid" id="catPageGrid"></div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
